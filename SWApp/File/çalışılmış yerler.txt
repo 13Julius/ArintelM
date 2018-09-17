@@ -1,0 +1,18 @@
+Notlar : 
+Deletegate :  temel tipten biri olan delegelerin kullaným amaçlarý, metot adresi saklamaktýr. Bazen metotlarýmýzý, ihtiyacýmýz olduðu anda çalýþtýrmak isteyebiliriz. Olay(event) tabanlý programlama ve asenkron programlama yaparken, anonim metot yazarken delegelerden faydalanýrýz. Bir diðer kullaným amacý da, bir metoda parametre olarak baþka bir metot verebilmektir.
+
+Dependency injection: baðýmlýlýklarýn dýþarýdan enjecte edilmesi anlamýna gelir.
+Yani nedir; yazýlýmý oluþturan yapýlarýn birbirleri ile olan baðý en aza indirmek. Buna loosely coupled-Gevþek baðlýlýk denir.
+Uygulama içerisinde deðiþtirilmesi müdahale edilmesi gereken yerler minumuma iner.
+
+
+TempData: Bu nesne de diðer ikisinin yaptýðý iþi yapar.TempData[“CurrentTime”] = DateTime.Now;Bu üç nesne arasýnda küçük ve kritik farklar vardýr. Örneðin ViewBag nesnesi dynamic tipinde bir nesne olduðundan bununla alakalý hatalar compile time da deðil run time da yakalanýr. Teknik anlamda ViewData nesnesinden farký yoktur. Söz dizim olarak farklýdýr.
+En büyük ve önemli fark TempData ile diðer ikisi arasýndadýr. ViewData ve ViewBag nesnesi o anki HTTP istek içerisinde geçerlidir. Yaþam döngüsü bir sonraki isteðe kadardýr. Ama TempData bir alt HTTP istek içinde geçerlidir. Yaþam döngüsü o anki ve bir sonraki HTTP istek içerinde geçerlidir.
+
+Soðan mimarisi :  Bu mimaride, Kullanýcý Arayüzü Katmaný sadece ve sadece Ýþ Modeli Katmanýyla iletiþimdedir, ve Veri Katmanýyla direk iletiþime geçmesine izin verilmiyor, böylece hem güvenlik saðlanýyor, hem de bir katman deðiþtirilmek istendiðinde diðer katmanlarda minimum deðiþiklikle bu iþlem yapýlabiliyor. bu mimari her ne kadar küçük ölçekli uygulamalarda baþarýlý olsa da, daha büyük ve karmaþýk uygulamalarda yetersiz kalmaktadýr.
+
+[StringLength(150)]
+public string MyProperty { get; set; }
+You have to include the below namespace to use it.
+
+using System.ComponentModel.DataAnnotations;

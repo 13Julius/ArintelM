@@ -1,0 +1,9 @@
+cat /etc/resolv.conf ------- Cat komutu dosya içindeki bilgileri gösterir.
+
+nano -------Modifiye dosya editörü terminal içinde çalýþan
+nano /etc/dhcp/dhclient.conf
+service network-manager restart
+firefox üzerinden - about:config ---- media.peerconnection.enabled  = false
+VPNBOOK - Open vpn
+Unzip file
+openvpn filename

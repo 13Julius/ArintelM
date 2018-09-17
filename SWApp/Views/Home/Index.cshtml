@@ -1,0 +1,105 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-6" style="float:left">
+            <a href="#" class="btn btn-default pull-right" id="selectAdmin">
+                Yönetici Girişi
+            </a>
+        </div>
+        <div class="col-md-6" style="float:left">
+            <a href="#" class="btn btn-danger" id="selectUser">
+            Kullanıcı Girişi</a>
+        </div>
+    </div>
+</div>
+<hr />
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div class="container">
+    <div class="row" id="rowCreate" style="display:none">
+        <div class="col-md-12">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">                
+                <div class="form-group">
+                    <input type="file" name="Upload" value="Liste" />
+                    
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Gönder" class="btn btn-success" />
+                </div>
+
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+</div>
+}
+<hr />
+<div class="row" id="rowList" style="display:none">
+    <div class="col-md-12">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="List" id="wordList" />
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+
+<!--Modals-->
+<!---->
+
+@section Scripts{
+    <script>     
+
+        $("#selectAdmin").on('click', function () {
+            if (document.getElementById("rowCreate").style.display !== "block") {
+                document.getElementById("rowCreate").style.display = "block";
+                document.getElementById("rowList").style.display = "none";
+            }
+        });
+        $("#selectUser").on('click', function () {
+            if (!document.getElementById("rowList").style.display !== "block") {
+                document.getElementById("rowList").style.display = "block";
+                document.getElementById("rowCreate").style.display = "none";
+            }
+        });
+        $("#wordList").keyup(function () {
+            var availableTags = [];
+            var sendWords = $("#wordList").val();
+            $.ajax({
+                type: 'POST',
+                url: "/Home/GetWords",
+                dataType: 'json',
+                data: { word: sendWords },
+                success: function (data) {
+                    $(data).each(function () {
+                        availableTags.push(this.Content);
+                    });
+                }
+            });
+
+            $(function () {             
+                $("#wordList").autocomplete({
+                    source: availableTags,
+                    select: function (e, ui) {                        
+                        $.ajax({
+                            type: 'POST',
+                            url: "/Home/WordCounter",
+                            dataType: 'json',
+                            data: { word: ui.item.value },
+                            success: function (data) {
+                            }
+                        });
+                    }
+                });
+            });
+        }); 
+    </script>
+
+    }
